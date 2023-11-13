@@ -1,0 +1,102 @@
+﻿@model Kullanici
+
+<link rel="stylesheet" href="~/css/Home/kayitOl.css"/>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card" id="kart">
+                <div class="card-header">
+                    <h3 class="text-center text-white">Kayıt Ol</h3>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label asp-for="Ad">Ad:</label>
+                                    <input type="text" class="form-control" id="ad" placeholder="Adınız">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label asp-for="Soyad">Soyad:</label>
+                                    <input type="text" class="form-control" id="soyad" placeholder="Soyadınız">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label asp-for="Telefon">Telefon:</label>
+                                    <input type="text" class="form-control" id="telefon" placeholder="Telefon numaranız">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label asp-for="Eposta">E-posta:</label>
+                                    <input type="email" class="form-control" id="eposta" placeholder="E-posta adresiniz">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label asp-for="Sifre">Şifre:</label>
+                                    <input type="password" class="form-control" id="sifre" placeholder="Şifreniz">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label for="password">Tekrar Şifre:</label>
+                                    <input type="password" class="form-control" id="sifre2" placeholder="Tekrardan şifrenizi giriniz">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label asp-for="Cinsiyet">Cinsiyet:</label>
+                                    <div class="d-flex">
+                                        <p class="mx-auto">
+                                            <input type="radio" asp-for="Cinsiyet" value="erkek" />
+                                            <label>Erkek</label>
+                                        </p>
+                                        <p class="mx-auto">
+                                            <input type="radio" asp-for="Cinsiyet" value="kadin" />
+                                            <label>Kadın</label>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label asp-for="Rol">Rol:</label>
+                                    <div class="d-flex">
+                                        <p class="mx-auto">
+                                            <input type="radio" asp-for="Rol" value="antrenor" />
+                                            <label>Antrenör</label>
+                                        </p>
+                                        <p class="mx-auto">
+                                            <input type="radio" asp-for="Rol" value="danisan" />
+                                            <label>Kadın</label>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button id="kayitOl" type="submit" class="btn btn-block my-3">Kayıt Ol</button>
+                        <div class="text-center mt-3">
+                            <a asp-action="GirisYap" id="girisYap" class="btn">Giriş Yap</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

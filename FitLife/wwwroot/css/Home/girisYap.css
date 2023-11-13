@@ -1,0 +1,22 @@
+﻿
+body {
+    background-color: #F1EAFF !important;
+}
+
+.card-header {
+    background-color: #B4BDFF !important;
+}
+
+.card-body {
+    background-color: #83A2FF !important;
+}
+
+#girisYap {
+    background-color: #001524 !important;
+    color:white;
+}
+
+#kayitOl {
+    background-color: #001B79 !important;
+    color:white;
+}
