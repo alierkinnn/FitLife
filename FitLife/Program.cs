@@ -1,10 +1,11 @@
 using FirebaseAdmin;
-using FitLife.Firebase;
 using FitLife.Repositories.Abstracts;
 using FitLife.Repositories.Concretes;
 using FitLife.Services.Abstracts;
 using FitLife.Services.Concretes;
 using Google.Apis.Auth.OAuth2;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,17 +17,43 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IAdminRepo, AdminRepo>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 
+builder.Services.AddScoped<IHesapRepo, HesapRepo>();
+builder.Services.AddScoped<IHesapService, HesapService>();
+
 builder.Services.AddMvc().AddSessionStateTempDataProvider();
 builder.Services.AddSession();
 
-var firebaseConfigPath = "C:\\Users\\alier\\source\\repos\\FitLife\\FitLife\\fitlife-b940d-firebase-adminsdk-4g1gz-9f3498c82b.json";
-FirebaseApp.Create(new AppOptions
+builder.Services.AddAuthentication(options =>
 {
-	Credential = GoogleCredential.FromFile(firebaseConfigPath),
+	options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+	options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme = "Your_External_Scheme"; // Eksikse bu satýrý ekleyin
+})
+	.AddCookie(options =>
+	{
+		// Cookie yetkilendirme konfigürasyonlarý...
+	});
+
+builder.Services.AddAuthorization(options =>
+{
+	options.DefaultPolicy = new AuthorizationPolicyBuilder()
+		.RequireAuthenticatedUser()
+		.Build();
 });
 
-// Firebase Authentication servisini ekleyin
-builder.Services.AddScoped<FirebaseAuthService>();
+//var firebaseConfigPath = "C:\\Users\\alier\\source\\repos\\FitLife\\FitLife\\fitlife-b940d-firebase-adminsdk-4g1gz-9f3498c82b.json";
+//FirebaseApp.Create(new AppOptions
+//{
+//	Credential = GoogleCredential.FromFile(firebaseConfigPath),
+//});
+
+var credential = GoogleCredential.FromFile("fitlife-b940d-firebase-adminsdk-4g1gz-95401c90cb.json");
+var firebaseApp = FirebaseApp.Create(new AppOptions
+{
+	Credential = credential,
+});
+
+builder.Services.AddSingleton(firebaseApp);
 
 
 var app = builder.Build();
@@ -45,11 +72,12 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseSession();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Hesap}/{action=GirisYap}/{id?}");
 
 app.Run();

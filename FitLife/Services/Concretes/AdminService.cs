@@ -14,19 +14,19 @@ namespace FitLife.Services.Concretes
             this.adminRepo = adminRepo;
         }
 
-        public void DanisanEkle(Danisan model)
+		public async Task<bool> DanisanEkle(Danisan model)
         {
-            adminRepo.DanisanEkle(model);
+            return await adminRepo.DanisanEkle(model);
         }
 
-		public void DanisanGuncelle(Danisan model)
+		public async Task<bool> DanisanGuncelle(Danisan model)
 		{
-            adminRepo.DanisanGuncelle(model);
+            return await adminRepo.DanisanGuncelle(model);
 		}
 
-		public void DanisanSil(string id)
+		public async Task<bool> DanisanSil(string id)
 		{
-            adminRepo.DanisanSil(id);
+            return await adminRepo.DanisanSil(id);
 		}
 
 		public Danisan IdyeGoreDanisanGetir(string id)
@@ -40,5 +40,31 @@ namespace FitLife.Services.Concretes
         }
 
 
-    }
+		public async Task<bool> AntrenorEkle(Danisan model)
+		{
+			return await adminRepo.AntrenorEkle(model);
+		}
+
+		public async Task<bool> AntrenorGuncelle(Antrenor model)
+		{
+			return await adminRepo.AntrenorGuncelle(model);
+		}
+
+		public async Task<bool> AntrenorSil(string id)
+		{
+			return await adminRepo.AntrenorSil(id);
+		}
+
+		public Antrenor IdyeGoreAntrenorGetir(string id)
+		{
+			return adminRepo.IdyeGoreAntrenorGetir(id);
+		}
+
+		public List<Antrenor> TumAntrenorleriListele()
+		{
+			return adminRepo.TumAntrenorleriListele();
+		}
+
+
+	}
 }

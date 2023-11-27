@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\alier\source\repos\FitLife\FitLife
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Admin/AntrenorGuncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQW50cmVub3JHdW5jZWxsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/alier/source/repos/FitLife/FitLife/Views/Admin/DanisanEkle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFuaXNhbkVrbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -26,6 +30,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/alier/source/repos/FitLife/FitLife/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Admin/TumAntrenorleriListele.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVHVtQW50cmVub3JsZXJpTGlzdGVsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alier/source/repos/FitLife/FitLife/Views/Admin/TumDanisanlariListele.cshtml]
