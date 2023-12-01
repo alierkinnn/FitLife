@@ -1,0 +1,56 @@
+﻿@model Antrenor
+
+<div class="display-6">
+    Antrenor Güncelle
+</div>
+
+<form method="post" asp-action="AntrenorProfilimiGuncelle">
+
+    <div class="form-group my-2">
+        <label asp-for="Ad"></label>
+        <input type="text" asp-for="Ad" class="form-control" />
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="Soyad"></label>
+        <input type="text" asp-for="Soyad" class="form-control" />
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="Eposta"></label>
+        <input type="email" asp-for="Eposta" class="form-control" />
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="Sifre">Şifre</label>
+        <input type="password" asp-for="Sifre" value="@Model.Sifre" class="form-control" />
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="Telefon"></label>
+        <input type="text" asp-for="Telefon" class="form-control" />
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="Cinsiyet"></label>
+        <p>
+            <input type="radio" asp-for="Cinsiyet" value="Erkek" />
+            <label>Erkek</label>
+        </p>
+        <p>
+            <input type="radio" asp-for="Cinsiyet" value="Kadın" />
+            <label>Kadın</label>
+        </p>
+
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="DogumTarihi">Doğum Tarihi</label>
+        <input type="date" id="datepicker" asp-for="DogumTarihi" />
+    </div>
+
+    <div class="form-group my-2">
+        <button type="submit" class="btn btn-success">Güncelle</button>
+    </div>
+
+</form>

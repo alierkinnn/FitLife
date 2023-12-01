@@ -4,7 +4,7 @@ namespace FitLife.Repositories.Abstracts
 {
     public interface IAdminRepo
     {
-		Task<bool> AntrenorEkle(Danisan model);
+		Task<bool> AntrenorEkle(Antrenor model);
 		Task<bool> AntrenorGuncelle(Antrenor model);
 		Task<bool> AntrenorSil(string id);
 		public Task<bool> DanisanEkle(Danisan model);

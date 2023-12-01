@@ -1,0 +1,36 @@
+﻿@model BeslenmeProgrami
+
+<h2 class="mx-auto text-center">Beslenme Programı Ekle</h2>
+
+<form asp-action="BeslenmeProgramiEkle" method="post">
+
+    <div class="my-2">
+        <label asp-for="BeslenmeProgramiAdi">Program ismi:</label>
+        <input asp-for="BeslenmeProgramiAdi" type="text" class="form-control" />
+    </div>
+
+    <div class="my-2">
+        <label asp-for="Hedef">Hedef:</label>
+        <select asp-for="Hedef" class="form-control">
+            <option>Seçiniz</option>
+            <option value="Kas Kazanma">Kas Kazanma</option>
+            <option value="Kilo alma">Kilo alma</option>
+            <option value="Kilo verme">Kilo verme</option>
+            <option value="Kiloyu koruma">Kiloyu koruma</option>
+        </select>
+    </div>
+
+    <div class="my-2">
+        <label asp-for="GunlukOgunler">Günlük Öğünler</label>
+        <textarea asp-for="GunlukOgunler" style="width:100%; height:15rem;"></textarea>
+    </div>
+
+    <div class="my-2 mb-4">
+        <label asp-for="KaloriHedefi">Kalori Hedefi:</label>
+        <input asp-for="KaloriHedefi" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Programı Kaydet</button>
+
+</form>
+

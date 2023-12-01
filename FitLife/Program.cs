@@ -17,7 +17,16 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IAdminRepo, AdminRepo>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 
-builder.Services.AddScoped<IHesapRepo, HesapRepo>();
+builder.Services.AddScoped<IMesajRepo, MesajRepo>();
+builder.Services.AddScoped<IMesajService, MesajService>();
+
+builder.Services.AddScoped<IAntrenorRepo, AntrenorRepo>();
+builder.Services.AddScoped<IAntrenorService, AntrenorService>();
+
+builder.Services.AddScoped<IDanisanRepo, DanisanRepo>();
+builder.Services.AddScoped<IDanisanService, DanisanService>();
+
+
 builder.Services.AddScoped<IHesapService, HesapService>();
 
 builder.Services.AddMvc().AddSessionStateTempDataProvider();

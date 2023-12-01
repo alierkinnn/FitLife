@@ -8,6 +8,7 @@ using FitLife.Models;
 using FitLife.Repositories.Abstracts;
 using Newtonsoft.Json;
 using Firebase.Database.Query;
+using FitLife.Services.Abstracts;
 
 namespace FitLife.Repositories.Concretes
 {
@@ -22,16 +23,19 @@ namespace FitLife.Repositories.Concretes
 
         
 
-        public AdminRepo()
+        public AdminRepo(IHesapService hesapService)
         {
             client = new FireSharp.FirebaseClient(config);
-        }
+			this.hesapService = hesapService;
+		}
 		IFirebaseClient client;
+		private readonly IHesapService hesapService;
 
 		public async Task<bool> DanisanEkle(Danisan model)
 		{
 			try
 			{
+				model.Sifre = hesapService.HashPassword(model.Sifre);
 				// Firebase Authentication'ta kullanıcıyı oluştur
 				var auth = FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance;
 				var user = await auth.CreateUserAsync(new UserRecordArgs()
@@ -80,6 +84,8 @@ namespace FitLife.Repositories.Concretes
 		{
 			try
 			{
+				model.Sifre = hesapService.HashPassword(model.Sifre);
+
 				// Firebase Authentication'ta kullanıcıyı güncelle
 				var auth = FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance;
 				var user = await auth.GetUserAsync(model.Id);
@@ -177,10 +183,11 @@ namespace FitLife.Repositories.Concretes
 			}
         }
 
-		public async Task<bool> AntrenorEkle(Danisan model)
+		public async Task<bool> AntrenorEkle(Antrenor model)
 		{
 			try
 			{
+				model.Sifre = hesapService.HashPassword(model.Sifre);
 				// Firebase Authentication'ta kullanıcıyı oluştur
 				var auth = FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance;
 				var user = await auth.CreateUserAsync(new UserRecordArgs()
@@ -227,6 +234,7 @@ namespace FitLife.Repositories.Concretes
 		{
 			try
 			{
+				model.Sifre = hesapService.HashPassword(model.Sifre);
 				// Firebase Authentication'ta kullanıcıyı güncelle
 				var auth = FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance;
 				var user = await auth.GetUserAsync(model.Id);

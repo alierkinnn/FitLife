@@ -1,0 +1,54 @@
+﻿@model MesajModel
+
+<style>
+    .mesaj-container {
+        position: relative;
+    }
+
+    .etiket {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #28a745;
+        color: #fff;
+        height: 100%;
+        text-align: center;
+        width: 10%;
+        padding: 0.3rem;
+    }
+
+    .antrenor-etiket {
+        background-color: #007bff; /* Antrenör etiketi rengi */
+    }
+
+
+</style>
+
+<div class="container mt-5 bg-light p-4">
+    <h2 class="text-center mb-5">Mesajlarım</h2>
+
+    @if (ViewBag.Mesajlar != null && ViewBag.Mesajlar.Count > 0)
+    {
+        <ul class="list-group">
+            @foreach (var mesaj in ViewBag.Mesajlar)
+            {
+                <li class="list-group-item mesaj-container">
+                    <span class="etiket @(mesaj.Gonderen == "Antrenor" ? "antrenor-etiket" : "")">
+                        @(mesaj.Gonderen == "Antrenor" ? "Antrenör" : "Danışan")
+                    </span>
+                    @mesaj.Mesaj
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Henüz mesajınız bulunmamaktadır.</p>
+    }
+
+    <form method="post" asp-action="MesajGonder" class="mt-5">
+        <input asp-for="DanisanId" type="hidden" value="@Context.Request.Query["danisanId"]" />
+        <input asp-for="Mesaj" type="text" class="form-control mb-2" placeholder="Mesajınızı girin" id="mesajInput">
+        <button type="submit" class="btn btn-primary">Gönder</button>
+    </form>
+</div>

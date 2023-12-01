@@ -12,6 +12,7 @@ using FireSharp.Response;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using FitLife.Services.Concretes;
 
 namespace FitLife.Controllers.Hesap
 {
@@ -24,30 +25,14 @@ namespace FitLife.Controllers.Hesap
 			BasePath = "https://fitlife-b940d-default-rtdb.firebaseio.com/",
 		};
 
-		private string HashPassword(string password)
-		{
-			using (SHA256 sha256 = SHA256.Create())
-			{
-				byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-				// Hash'i bir string olarak döndürmek için hex formatına çevirme
-				StringBuilder stringBuilder = new StringBuilder();
-				for (int i = 0; i < hashedBytes.Length; i++)
-				{
-					stringBuilder.Append(hashedBytes[i].ToString("x2"));
-				}
-
-				return stringBuilder.ToString();
-			}
-		}
-
-		private readonly IHesapService _hesapService;
 		private readonly IAdminService _adminService;
+		private readonly IHesapService _hesapService;
 
-
-		public HesapController()
+		public HesapController(IHesapService hesapService)
 		{
 			client = new FireSharp.FirebaseClient(config);
+			this._hesapService = hesapService;
 		}
 		IFirebaseClient client;
 
@@ -77,6 +62,8 @@ namespace FitLife.Controllers.Hesap
 		{
 			try
 			{
+				model.Sifre = _hesapService.HashPassword(model.Sifre);
+
 				var auth = FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance;
 
 				var user = await auth.CreateUserAsync(new UserRecordArgs()
@@ -117,6 +104,8 @@ namespace FitLife.Controllers.Hesap
 
 			try
 			{
+				model.Sifre = _hesapService.HashPassword(model.Sifre);
+
 				var auth = FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance;
 				
 				var user = await auth.GetUserByEmailAsync(model.Eposta);
@@ -127,16 +116,16 @@ namespace FitLife.Controllers.Hesap
 
 					// Danisanlar tablosundan veriyi al
 					FirebaseResponse danisanResponse = client.Get("Danisanlar/" + uid);
-					Danisan danisan = null;
+					FitLife.Models.Danisan danisan = null;
 					if (danisanResponse != null && danisanResponse.Body != "null")
 					{
-						danisan = JsonConvert.DeserializeObject<Danisan>(danisanResponse.Body);
+						danisan = JsonConvert.DeserializeObject<FitLife.Models.Danisan>(danisanResponse.Body);
 					}
 
 					// Eğer danisan tablosunda kayıt bulunmazsa, Adminler tablosundan veriyi al
 					if (danisan == null)
 					{
-						FirebaseResponse adminResponse = client.Get("Yoneticiler/" + uid);
+						FirebaseResponse adminResponse = client.Get("Adminler/" + uid);
 						Yonetici yonetici = null;
 						if (adminResponse != null && adminResponse.Body != "null")
 						{
@@ -147,10 +136,10 @@ namespace FitLife.Controllers.Hesap
 						if (yonetici == null)
 						{
 							FirebaseResponse antrenorResponse = client.Get("Antrenorler/" + uid);
-							Antrenor antrenor = null;
+							FitLife.Models.Antrenor antrenor = null;
 							if (antrenorResponse != null && antrenorResponse.Body != "null")
 							{
-								antrenor = JsonConvert.DeserializeObject<Antrenor>(antrenorResponse.Body);
+								antrenor = JsonConvert.DeserializeObject<FitLife.Models.Antrenor>(antrenorResponse.Body);
 							}
 
 							// Şimdi danisan, admin ve antrenor değişkenlerinde ilgili kayıtlar bulunmaktadır.
@@ -166,7 +155,7 @@ namespace FitLife.Controllers.Hesap
 
 								HttpContext.Session.SetString("Id", uid);
 
-								return RedirectToAction("Index", "Admin");
+								return RedirectToAction("Index", "Antrenor");
 							}
 							else
 							{
@@ -185,7 +174,7 @@ namespace FitLife.Controllers.Hesap
 								ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 								HttpContext.SignInAsync(principal).GetAwaiter().GetResult();
 
-								HttpContext.Session.SetString("Id", yonetici.Id);
+								HttpContext.Session.SetString("Id", uid);
 
 								return RedirectToAction("Index", "Admin");
 							}
@@ -207,9 +196,9 @@ namespace FitLife.Controllers.Hesap
 							ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 							HttpContext.SignInAsync(principal).GetAwaiter().GetResult();
 
-							HttpContext.Session.SetString("Id", danisan.Id);
+							HttpContext.Session.SetString("Id", uid);
 
-							return RedirectToAction("Index", "Admin");
+							return RedirectToAction("Index", "Danisan");
 						}
 						else
 						{

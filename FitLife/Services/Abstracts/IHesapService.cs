@@ -1,9 +1,7 @@
-﻿using FitLife.Models;
-
-namespace FitLife.Services.Abstracts
+﻿namespace FitLife.Services.Abstracts
 {
 	public interface IHesapService
 	{
-		public GirisYapModel GirisYap(GirisYapModel model);
+		public string HashPassword(string password);
 	}
 }

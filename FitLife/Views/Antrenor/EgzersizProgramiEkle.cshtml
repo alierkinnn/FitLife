@@ -1,0 +1,123 @@
+﻿@model EgzersizProgrami
+
+<h2 class="mx-auto text-center">Egzersiz Programı Ekle</h2>
+
+<form asp-action="EgzersizProgramiEkle" method="post">
+
+    <div class="my-2">
+        <label asp-for="EgzersizProgramiAdi">Program ismi:</label>
+        <input asp-for="EgzersizProgramiAdi" type="text" class="form-control" />
+    </div>
+@*    <div class="my-2">
+        <label asp-for="BaslangicTarihi">Başlangıç Tarihi:</label>
+        <input asp-for="BaslangicTarihi" type="date" class="form-control" />
+    </div>
+    <div class="my-2">
+        <label asp-for="BitisTarihi">Bitiş Tarihi:</label>
+        <input asp-for="BitisTarihi" type="date" class="form-control" />
+    </div>*@
+
+    <h3 class="mt-4 mb-3">Egzersizler</h3>
+    <div id="egzersizlerContainer">
+        <div class="egzersiz-container" data-index="0">
+
+            <div class="card-body">
+                <div class="my-2">
+                    <label asp-for="Egzersizler[0].EgzersizAdi">Egsersiz Adı:</label>
+                    <input asp-for="Egzersizler[0].EgzersizAdi" class="form-control" />
+                </div>
+
+                <div class="my-2">
+                    <label asp-for="Egzersizler[0].Hedef">Hedef:</label>
+                    <select asp-for="Egzersizler[0].Hedef" class="form-control">
+                        <option>Seçiniz</option>
+                        <option value="Kas Kazanma">Kas Kazanma</option>
+                        <option value="Kilo alma">Kilo alma</option>
+                        <option value="Kilo verme">Kilo verme</option>
+                        <option value="Kiloyu koruma">Kiloyu koruma</option>
+                    </select>
+                </div>
+
+                <div class="my-2">
+                    <label asp-for="Egzersizler[0].Set">Set:</label>
+                    <input asp-for="Egzersizler[0].Set" class="form-control" />
+                </div>
+
+                <div class="my-2 mb-4">
+                    <label asp-for="Egzersizler[0].TekrarSayisi">Tekrar Sayısı:</label>
+                    <input asp-for="Egzersizler[0].TekrarSayisi" class="form-control" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="egzersizEkleButton">Egzersiz Ekle</button>
+    <button type="submit" class="btn btn-success">Programı Kaydet</button>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#BaslangicTarihi").on("change", function () {
+                var selectedDate = new Date($(this).val());
+                var today = new Date();
+
+                if (selectedDate < today) {
+                    alert("Başlangıç tarihi gelecek bir tarih seçilmelidir");
+                    $(this).val(""); // Tarihi temizle
+                }
+            });
+            $("#BitisTarihi").on("change", function () {
+                var selectedDate = new Date($(this).val());
+                var today = new Date();
+
+                if (selectedDate < today) {
+                    alert("Bitis tarihi gelecek bir tarih seçilmelidir");
+                    $(this).val(""); // Tarihi temizle
+                }
+            });
+
+            var egzersizCounter = 1;
+
+            $("#egzersizEkleButton").click(function () {
+                var newEgzersiz = $("#egzersizlerContainer .egzersiz-container:first").clone();
+                newEgzersiz.find("input").val("");
+                newEgzersiz.find("select").val(""); // Select değerini temizle
+
+                // Index değerini güncelle
+                var newIndex = egzersizCounter;
+                newEgzersiz.attr("data-index", newIndex);
+
+                // Label ve input elementlerinin id ve name attributelerini güncelle
+                newEgzersiz.find("label, input, select").each(function () {
+                    var currentId = $(this).attr("id");
+                    var currentName = $(this).attr("name");
+
+                    if (currentId) {
+                        $(this).attr("id", currentId.replace("[0]", "[" + newIndex + "]"));
+                    }
+
+                    if (currentName) {
+                        $(this).attr("name", currentName.replace("[0]", "[" + newIndex + "]"));
+                    }
+                });
+
+                // Sil butonunu kopyalanmış öğeye ekliyoruz
+                var deleteButton = $("<button/>", {
+                    type: "button",
+                    class: "btn btn-danger mb-5",
+                    text: "Sil",
+                    click: function () {
+                        $(this).closest('.egzersiz-container').remove();
+                    }
+                });
+                newEgzersiz.append(deleteButton);
+
+                $("#egzersizlerContainer").append(newEgzersiz);
+                egzersizCounter++;
+            });
+        });
+    </script>
+}

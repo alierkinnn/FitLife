@@ -1,21 +1,26 @@
-﻿using FitLife.Models;
-using FitLife.Repositories.Abstracts;
+﻿using System.Security.Cryptography;
+using System.Text;
 using FitLife.Services.Abstracts;
 
 namespace FitLife.Services.Concretes
 {
 	public class HesapService : IHesapService
 	{
-		private readonly IHesapRepo _hesapRepo;
-
-		public HesapService(IHesapRepo hesapRepo)
+		public string HashPassword(string password)
 		{
-			this._hesapRepo = hesapRepo;
-		}
+			using (SHA256 sha256 = SHA256.Create())
+			{
+				byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-		public GirisYapModel GirisYap(GirisYapModel model)
-		{
-			return _hesapRepo.GirisYap(model);
+				// Hash'i bir string olarak döndürmek için hex formatına çevirme
+				StringBuilder stringBuilder = new StringBuilder();
+				for (int i = 0; i < hashedBytes.Length; i++)
+				{
+					stringBuilder.Append(hashedBytes[i].ToString("x2"));
+				}
+
+				return stringBuilder.ToString();
+			}
 		}
 	}
 }

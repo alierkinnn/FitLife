@@ -1,0 +1,85 @@
+﻿@*@model List<FitLife.Models.IlerlemeKaydi>
+
+<h2>İlerlemelerim</h2>
+
+<div class="mb-2">
+    <button class="btn btn-primary float-right" id="EkleBtn" onclick="KartEkle()">Ekle</button>
+</div>
+
+@if (Model.Count > 0)
+{
+    <div id="cardDeck" class="card-deck">
+        @foreach (var ilerleme in Model)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">@ilerleme.Tarih</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Kilo: @ilerleme.Kilo</p>
+                    <p class="card-text">Boy: @ilerleme.Boy</p>
+                    <p class="card-text">Yağ Oranı: @ilerleme.YagOrani</p>
+                    <p class="card-text">Kas Kütlesi: @ilerleme.KasKutlesi</p>
+                    <p class="card-text">Vücut Kitle İndeksi: @ilerleme.VucutKitleIndeksi</p>
+                </div>
+            </div>
+        }
+    </div>
+    <form id="yeniKartlar">
+
+    </form>
+}
+else
+{
+    <p>Herhangi bir ilerleme kaydınız bulunmamaktadır.</p>
+}
+
+<script src ="~/js/kayit/IlerlemeKayitlarim.js"></script>*@
+
+@model List<IlerlemeKaydi>
+
+<div class="text-right mb-3">
+    <a asp-action="IlerlemeKaydiEkle" class="btn btn-primary float-end">Yeni Kayıt Ekle</a>
+</div>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Tarih</th>
+            <th>Boy</th>
+            <th>Kilo</th>
+            <th>Yağ Oranı</th>
+            <th>Kas Kütlesi</th>
+            <th>Vücut Kitle İndeksi</th>
+            <th>İşlemlerim</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (IlerlemeKaydi kayit in Model)
+        {
+            <tr>
+                <td>@(kayit.Tarih)</td>
+                <td>@kayit.Boy</td>
+                <td>@kayit.Kilo</td>
+                <td>@kayit.YagOrani</td>
+                <td>@kayit.KasKutlesi</td>
+                <td>@kayit.VucutKitleIndeksi</td>
+              <td>
+                    <a href="#" onclick="Sil('@Url.Action("IlerlemeKaydiSil", "Danisan", new { id = kayit.Id })')" class="btn btn-danger">Sil</a>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function Sil(url) {
+        var onay = window.confirm("Bu danışanı silmek istediğinizden emin misiniz?");
+
+        if (onay) {
+            window.location.href = url;
+        }
+    }
+</script>
+

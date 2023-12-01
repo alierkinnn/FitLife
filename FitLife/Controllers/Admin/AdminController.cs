@@ -27,14 +27,18 @@ namespace FitLife.Controllers.Admin
         {
             return View();
         }
+		public IActionResult AntrenorEkle()
+		{
+			return View();
+		}
 
         public IActionResult TumDanisanlariListele()
         {
-			List<Danisan> model = adminService.TumDanisanlariListele();
+			List<FitLife.Models.Danisan> model = adminService.TumDanisanlariListele();
 
 			if (model == null)
 			{
-				model = new List<Danisan>(); // Eğer model null ise boş bir liste oluştur
+				model = new List<FitLife.Models.Danisan>(); // Eğer model null ise boş bir liste oluştur
 			}
 
 			return View(model);
@@ -42,11 +46,11 @@ namespace FitLife.Controllers.Admin
 
 		public IActionResult TumAntrenorleriListele()
 		{
-			List<Antrenor> model = adminService.TumAntrenorleriListele();
+			List<FitLife.Models.Antrenor> model = adminService.TumAntrenorleriListele();
 
 			if (model == null)
 			{
-				model = new List<Antrenor>(); // Eğer model null ise boş bir liste oluştur
+				model = new List<FitLife.Models.Antrenor>(); // Eğer model null ise boş bir liste oluştur
 			}
 
 			return View(model);
@@ -55,7 +59,7 @@ namespace FitLife.Controllers.Admin
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DanisanEkleAsync(Danisan model)
+        public async Task<IActionResult> DanisanEkleAsync(FitLife.Models.Danisan model)
         {
 			model.Rol = "Danisan";
 
@@ -82,10 +86,40 @@ namespace FitLife.Controllers.Admin
 			return View(); // Aynı sayfaya geri dön
 		}
 
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> AntrenorEkleAsync(FitLife.Models.Antrenor model)
+		{
+			model.Rol = "Antrenor";
+
+			try
+			{
+				if (await adminService.AntrenorEkle(model))
+				{
+					// Danışan başarıyla eklendi
+					TempData["Uyari"] = "Antrenör başarıyla eklenmiştir.";
+					return RedirectToAction("TumAntrenorleriListele");
+				}
+				else
+				{
+					// E-posta daha önce alınmış
+					ModelState.AddModelError("Hata", "Bu e-posta adresi zaten kullanımda.");
+				}
+			}
+			catch (Exception ex)
+			{
+				// Hata durumunda gerekli loglama veya başka işlemler yapılabilir
+				ModelState.AddModelError("Hata", $"Bir hata oluştu: {ex.Message}");
+			}
+
+			return View(); // Aynı sayfaya geri dön
+		}
+
+
 		[HttpGet]
 		public IActionResult DanisanGuncelle(string id)
 		{
-			Danisan model = adminService.IdyeGoreDanisanGetir(id);
+			FitLife.Models.Danisan model = adminService.IdyeGoreDanisanGetir(id);
 			model.Id = id;
 			return View(model);
 		}
@@ -93,13 +127,13 @@ namespace FitLife.Controllers.Admin
 		[HttpGet]
 		public IActionResult AntrenorGuncelle(string id)
 		{
-			Antrenor model = adminService.IdyeGoreAntrenorGetir(id);
+			FitLife.Models.Antrenor model = adminService.IdyeGoreAntrenorGetir(id);
 			model.Id = id;
 			return View(model);
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> DanisanGuncelle(Danisan model)
+		public async Task<IActionResult> DanisanGuncelle(FitLife.Models.Danisan model)
 		{
 			try
 			{
@@ -118,7 +152,7 @@ namespace FitLife.Controllers.Admin
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> AntrenorGuncelle(Antrenor model)
+		public async Task<IActionResult> AntrenorGuncelle(FitLife.Models.Antrenor model)
 		{
 			try
 			{

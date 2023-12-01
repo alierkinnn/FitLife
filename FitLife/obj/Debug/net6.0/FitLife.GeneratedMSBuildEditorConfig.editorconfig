@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\alier\source\repos\FitLife\FitLife
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Admin/AntrenorEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQW50cmVub3JFa2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/alier/source/repos/FitLife/FitLife/Views/Admin/AntrenorGuncelle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQW50cmVub3JHdW5jZWxsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -38,6 +42,62 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/alier/source/repos/FitLife/FitLife/Views/Admin/TumDanisanlariListele.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVHVtRGFuaXNhbmxhcmlMaXN0ZWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/AntrenorProfilimiGuncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcQW50cmVub3JQcm9maWxpbWlHdW5jZWxsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/BeslenmeProgramiEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcQmVzbGVubWVQcm9ncmFtaUVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/BeslenmeProgramiGuncelle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcQmVzbGVubWVQcm9ncmFtaUd1bmNlbGxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/BeslenmeProgramlariniListele.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcQmVzbGVubWVQcm9ncmFtbGFyaW5pTGlzdGVsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/DanisanDetaylariniGoster.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcRGFuaXNhbkRldGF5bGFyaW5pR29zdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/DanisanlarimiListele.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcRGFuaXNhbmxhcmltaUxpc3RlbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/EgzersizProgramiEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcRWd6ZXJzaXpQcm9ncmFtaUVrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/EgzersizProgramlariniListele.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcRWd6ZXJzaXpQcm9ncmFtbGFyaW5pTGlzdGVsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Antrenor/MesajlarimiGoruntule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW50cmVub3JcTWVzYWpsYXJpbWlHb3J1bnR1bGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Danisan/IlerlemeKaydiEkle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaXNhblxJbGVybGVtZUtheWRpRWtsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Danisan/IlerlemeKayitlarim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaXNhblxJbGVybGVtZUtheWl0bGFyaW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Danisan/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaXNhblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alier/source/repos/FitLife/FitLife/Views/Danisan/MesajlarimiGoruntule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaXNhblxNZXNhamxhcmltaUdvcnVudHVsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/alier/source/repos/FitLife/FitLife/Views/Hesap/GirisYap.cshtml]

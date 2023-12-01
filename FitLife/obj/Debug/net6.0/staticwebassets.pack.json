@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\alier\\source\\repos\\FitLife\\FitLife\\wwwroot\\js\\Danisan\\IlerlemeKayitlarim.js",
+      "PackagePath": "staticwebassets\\js\\Danisan\\IlerlemeKayitlarim.js"
+    },
+    {
       "Id": "C:\\Users\\alier\\source\\repos\\FitLife\\FitLife\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -1,0 +1,34 @@
+﻿@model IlerlemeKaydi
+
+<div class="display-6">
+    İlerleme Kaydı Ekle
+</div>
+
+<form method="post" asp-action="IlerlemeKaydiEkle">
+
+    <div class="form-group my-2">
+        <label asp-for="Kilo"></label>
+        <input type="text" asp-for="Kilo" class="form-control" />
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="Boy"></label>
+        <input type="text" asp-for="Boy" class="form-control" />
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="YagOrani">Yağ Oranı</label>
+        <input type="text" asp-for="YagOrani" class="form-control" />
+    </div>
+
+    <div class="form-group my-2">
+        <label asp-for="KasKutlesi">Kas Kütlesi</label>
+        <input type="text" asp-for="KasKutlesi" class="form-control" />
+    </div>
+
+
+    <div class="form-group my-2">
+        <button type="submit" class="btn btn-success">Ekle</button>
+    </div>
+
+</form>

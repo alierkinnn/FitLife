@@ -1,0 +1,31 @@
+﻿@model List<Danisan>
+
+<table class="table table-hover table-striped">
+	<thead>
+		<tr>
+			<th>İsim</th>
+			<th>E-posta</th>
+			<th>Telefon Numarası</th>
+			<th>Daha fazlası</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Danisan danisan in Model)
+		{
+			<tr>
+				<td>@($"{danisan.Ad} {danisan.Soyad}")</td>
+				<td>@danisan.Eposta</td>
+				<td>@danisan.Telefon</td>
+				<td>
+					<a href="/Antrenor/DanisanDetaylariGoruntule/@danisan.Id" class="btn btn-info text-white">Detayları Görüntüle</a>
+					<a href='@Url.Action("MesajlarimiGoruntule", "Antrenor", new { danisanId = danisan.Id })'class="btn btn-danger">Mesajları Görüntüle</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+
+</table>
+
+<script>
+
+</script>

@@ -40,7 +40,7 @@ namespace FitLife.Services.Concretes
         }
 
 
-		public async Task<bool> AntrenorEkle(Danisan model)
+		public async Task<bool> AntrenorEkle(Antrenor model)
 		{
 			return await adminRepo.AntrenorEkle(model);
 		}
